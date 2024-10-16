@@ -1,0 +1,19 @@
+{
+  "name": "nodered-utilities",
+  "version": "1.0.0",
+  "description": "Useful functions for Node-RED",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pshirshov/nodered-utilities.git"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/pshirshov/nodered-utilities/issues"
+  },
+  "homepage": "https://github.com/pshirshov/nodered-utilities#readme"
+}
