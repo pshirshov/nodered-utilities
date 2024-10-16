@@ -8,4 +8,12 @@ function clamp(min, value, max) {
     return value;
 }
 
-module.exports.clamp = 'clamp';
+function clamp_positive(min, value) {
+    if (value < 0) {
+        return 0;
+    }
+    return value;
+}
+
+module.exports.clamp = clamp;
+module.exports.clamp_positive = clamp_positive;
