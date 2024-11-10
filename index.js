@@ -8,7 +8,7 @@ function clamp(min, value, max) {
     return value;
 }
 
-function clamp_positive(min, value) {
+function clamp_positive(value) {
     if (value < 0) {
         return 0;
     }
