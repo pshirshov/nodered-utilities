@@ -1,6 +1,6 @@
 {
   "name": "nodered-utilities",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Useful functions for Node-RED",
   "main": "index.js",
   "scripts": {
