@@ -32,21 +32,61 @@ function round3(f) {
     return roundf(f, 1);
 }
 
-class TariffBand {
-    static Day = new TariffBand('Day');
-    static Night = new TariffBand('Night');
-    static NightExtended = new TariffBand('NightExtended');
-    static Boost = new TariffBand('Boost');
+class TariffBandKind {
+    static Day = new TariffBandKind('Day');
+    static Night = new TariffBandKind('Night');
 
-    constructor(name) {
-        this.name = name;
+    constructor(kind) {
+        this.kind = kind;
     }
+
     toString() {
-        return `TariffBand.${this.name}`;
+        return `TariffBandKind(${this.kind})`;
+    }
+}
+
+class TariffBandSubKind {
+    static Day = new TariffBandSubKind('Day');
+    static Peak = new TariffBandSubKind('Peak');
+    static NightStart = new TariffBandSubKind('NightStart');
+    static Boost = new TariffBandSubKind('Boost');
+    static NightExtended = new TariffBandSubKind('NightExtended');
+
+    constructor(kind) {
+        this.kind = kind;
+    }
+
+    toString() {
+        return `TariffBandSubKind(${this.kind})`;
+    }
+}
+
+
+class TariffBand {
+    static Day = new TariffBand(TariffBandKind.Day, TariffBandSubKind.Day);
+    static Peak = new TariffBand(TariffBandKind.Day, TariffBandSubKind.Peak);
+
+    static NightStart = new TariffBand(TariffBandKind.Night, TariffBandSubKind.NightStart);
+    static NightExtended = new TariffBand(TariffBandKind.Night, TariffBandSubKind.NightExtended);
+    static Boost = new TariffBand(TariffBandKind.Night, TariffBandSubKind.Boost);
+
+    constructor(kind, subkind) {
+        this.kind = kind;
+        this.subkind = subkind;
+    }
+
+
+    toString() {
+        return `TariffBand(${this.kind}, ${this.subkind})`;
     }
 }
 
 function tariff_band(now) {
+    const isPeakTime = now.getHours() >= 17 && now.getHours() < 19;
+    if (isPeakTime) {
+        return TariffBand.Peak;
+    }
+
     const isDayTime = now.getHours() < 23 && now.getHours() >= 8;
     if (isDayTime) {
         return TariffBand.Day;
@@ -59,7 +99,7 @@ function tariff_band(now) {
 
     const isNightTime = now.getHours() >= 23 || now.getHours() < 2;
     if (isNightTime) {
-        return TariffBand.Night;
+        return TariffBand.NightStart;
     }
 
     const isExtendedChargeTime = now.getHours() >= 5 && now.getHours() < 8;
@@ -80,3 +120,5 @@ module.exports.round3 = round3;
 
 module.exports.tariff_band = tariff_band;
 module.exports.TariffBand = TariffBand;
+
+//console.debug(tariff_band(new Date()));
