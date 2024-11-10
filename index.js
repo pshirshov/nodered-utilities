@@ -15,6 +15,22 @@ function clamp_positive(value) {
     return value;
 }
 
+function roundf(f, precision) {
+    const prec = Math.pow(10, precision);
+    return Math.round(f * prec) / prec;
+}
+
+function round1(f) {
+    return roundf(f, 2);
+}
+
+function round2(f) {
+    return roundf(f, 2);
+}
+
+function round3(f) {
+    return roundf(f, 1);
+}
 
 class TariffBand {
     static Day = new TariffBand('Day');
@@ -56,6 +72,11 @@ function tariff_band(now) {
 
 module.exports.clamp = clamp;
 module.exports.clamp_positive = clamp_positive;
+
+module.exports.roundf = roundf;
+module.exports.round1 = round1;
+module.exports.round2 = round2;
+module.exports.round3 = round3;
 
 module.exports.tariff_band = tariff_band;
 module.exports.TariffBand = TariffBand;
