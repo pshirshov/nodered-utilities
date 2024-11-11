@@ -120,5 +120,7 @@ module.exports.round3 = round3;
 
 module.exports.tariff_band = tariff_band;
 module.exports.TariffBand = TariffBand;
+module.exports.TariffBandKind = TariffBandKind;
+module.exports.TariffBandSubKind = TariffBandSubKind;
 
 //console.debug(tariff_band(new Date()));
